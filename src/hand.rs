@@ -18,16 +18,19 @@ impl Hand {
     pub fn check_cards(&self) {
         println!("------------------------------");
         for i in 0..self.hand.len() {
-            println!("- {}", self.hand.get(i).unwrap());
+            // println!("- {}", self.hand.get(i).unwrap());
+            self.hand.get(i).unwrap().print_exact_card();
         }
         println!("------------------------------");
     }
     pub fn check_dealer_cards(&self) {
         println!("------------------------------");
         println!("The dealer up cards are: ");
-        println!("- Card face down");
+        // println!("- Card face down");
+        Card::print_facedown();
         for i in 1..self.hand.len() {
-            println!("- {}", self.hand.get(i).unwrap());
+            // println!("- {}", self.hand.get(i).unwrap());
+            self.hand.get(i).unwrap().print_exact_card();
         }
         println!("------------------------------");
     }
