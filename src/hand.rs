@@ -1,3 +1,4 @@
+use colored::Colorize;
 use rand::Rng;
 
 use crate::{card::Card, deck::Deck};
@@ -25,7 +26,7 @@ impl Hand {
     }
     pub fn check_dealer_cards(&self) {
         println!("------------------------------");
-        println!("The dealer up cards are: ");
+        println!("The {} up cards are: ", "dealer".bold().cyan());
         // println!("- Card face down");
         Card::print_facedown();
         for i in 1..self.hand.len() {
@@ -54,18 +55,21 @@ impl Hand {
         if sum == 21 {
             println!("------------------------------");
             println!("Congratulations you have a blackjack!");
-            println!("The player wins.");
+            println!("{}.", "The player wins".bold().green());
             println!("------------------------------");
             true
         } else if sum > 21 {
             println!("------------------------------");
             println!("You have more than 21, I'm sorry you lose.");
-            println!("The player lose.");
+            println!("{}.", "The player lose".bold().red());
             println!("------------------------------");
             true
         } else {
             println!("------------------------------");
-            println!("You have a total of {}. The game is running.", sum);
+            println!(
+                "You have a total of {}. The game is running.",
+                sum.to_string().bold().yellow()
+            );
             println!("------------------------------");
             false
         }
@@ -89,17 +93,25 @@ impl Hand {
         }
         if sum == 21 {
             println!("------------------------------");
-            println!("The dealer has a blackjack, he won.");
+            println!("{}.", "The dealer has a blackjack, he won".bold().red());
             println!("------------------------------");
             true
         } else if sum > 21 {
             println!("------------------------------");
-            println!("The dealer has more than 21, You are the winner.");
+            println!(
+                "{}.",
+                "The dealer has more than 21, You are the winner"
+                    .bold()
+                    .green()
+            );
             println!("------------------------------");
             true
         } else {
             println!("------------------------------");
-            println!("The dealer has a total of {}. The game is running.", sum);
+            println!(
+                "The dealer has a total of {}. The game is running.",
+                sum.to_string().bold().yellow()
+            );
             println!("------------------------------");
             false
         }

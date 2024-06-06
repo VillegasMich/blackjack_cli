@@ -3,15 +3,26 @@ mod deck;
 mod hand;
 
 use crate::{deck::Deck, hand::Hand};
+use colored::Colorize;
 use std::{io::stdin, process::exit};
 
 fn show_menu() {
     println!("------------------------------");
-    println!("1. Check your hand");
-    println!("2. Check dealer hand");
-    println!("3. Hit");
-    println!("4. Stand");
-    println!("5. Print this menu");
+    println!(
+        "{} {} {}",
+        "1. Check".bold(),
+        "your".bold().blue(),
+        "hand".bold()
+    );
+    println!(
+        "{} {} {}",
+        "2. Check".bold(),
+        "dealer".bold().cyan(),
+        "hand".bold()
+    );
+    println!("{}", "3. Hit".bold());
+    println!("{}", "4. Stand".bold());
+    println!("{}", "5. Print this menu".bold());
     println!("------------------------------");
 }
 fn check_option(option: String, player: &mut Hand, dealer: &Hand, deck: &mut Deck) -> bool {
@@ -29,7 +40,7 @@ fn check_option(option: String, player: &mut Hand, dealer: &Hand, deck: &mut Dec
             true
         }
         "4" => {
-            println!("You have decided to stand.");
+            println!("You have decided to {}.", "stand".bold());
             false
         }
         "5" => {
@@ -44,8 +55,7 @@ fn check_option(option: String, player: &mut Hand, dealer: &Hand, deck: &mut Dec
 }
 
 fn main() {
-    let mut player_over: bool;
-    println!("\nWelcome to Blackjack!");
+    println!("{}", "\nWelcome to Blackjack!".bold());
     let mut deck = Deck::new();
     let mut player = Hand::new();
     let mut dealer = Hand::new();
@@ -56,7 +66,7 @@ fn main() {
     show_menu();
     // player loop
     loop {
-        player_over = player.check_blackjack_player();
+        let player_over = player.check_blackjack_player();
         if !player_over {
             let mut option = String::new();
             let _ = stdin().read_line(&mut option);
@@ -66,11 +76,11 @@ fn main() {
                 break;
             }
         } else {
-            println!("Your cards where: ");
+            println!("{} cards where: ", "Your".bold().blue());
             player.check_cards();
-            println!("Dealer cards where: ");
+            println!("{} cards where: ", "Dealer".bold().cyan());
             dealer.check_cards();
-            println!("The game is over.\nThanks for playing.");
+            println!("{} \nThanks for playing.", "The game is over.".bold());
             exit(1);
         }
     }
@@ -80,11 +90,11 @@ fn main() {
         if !dealer_over {
             dealer.give_card(&mut deck);
         } else {
-            println!("Your cards where: ");
+            println!("{} cards where: ", "Your".bold().blue());
             player.check_cards();
-            println!("Dealer cards where: ");
+            println!("{} cards where: ", "Dealer".bold().cyan());
             dealer.check_cards();
-            println!("The game is over.\nThanks for playing.");
+            println!("{} \nThanks for playing.", "The game is over.".bold());
             exit(1);
         }
     }

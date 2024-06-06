@@ -141,5 +141,6 @@ impl Card {
             "K" => Card::print_k(),
             _ => {}
         }
+        println!("{}", self.suit);
     }
 }

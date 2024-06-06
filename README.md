@@ -17,6 +17,8 @@
 
 ## TODO
 
-- [ ] Make the **A** card has value 1 and 11;
-- [ ] Add delay time between dealer actions;
-- [ ] Print information with colors;
+- [ ] Make the **As** card has value 1 and/or 11.
+- [ ] Add delay time between dealer actions.
+- [x] Print information with colors.
+- [ ] Make shure the rules are ok.
+- [ ] Add split option **(advance)**

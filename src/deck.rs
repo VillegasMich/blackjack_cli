@@ -7,7 +7,7 @@ pub struct Deck {
 impl Deck {
     pub fn new() -> Deck {
         let mut cards = Vec::new();
-        let suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
+        let suits = ["Spades ♠", "Hearts ♥", "Diamonds ♦", "Clubs ♣"];
         let values = [
             "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K",
         ];
