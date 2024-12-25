@@ -1,5 +1,6 @@
 use core::fmt;
 
+#[derive(Clone)]
 pub struct Card {
     pub suit: String,
     pub value: String,

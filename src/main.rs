@@ -5,6 +5,7 @@ mod hand;
 use crate::{deck::Deck, hand::Hand};
 use colored::Colorize;
 use std::{io::stdin, process::exit};
+use std::{thread, time};
 
 fn show_menu() {
     println!("------------------------------");
@@ -36,7 +37,7 @@ fn check_option(option: String, player: &mut Hand, dealer: &Hand, deck: &mut Dec
             true
         }
         "3" => {
-            player.give_card(deck);
+            player.hit(deck);
             true
         }
         "4" => {
@@ -87,8 +88,9 @@ fn main() {
     // dealer loop
     loop {
         let dealer_over = dealer.check_blackjack_dealer();
+        thread::sleep(time::Duration::from_secs(3));
         if !dealer_over {
-            dealer.give_card(&mut deck);
+            dealer.hit(&mut deck);
         } else {
             println!("{} cards where: ", "Your".bold().blue());
             player.check_cards();

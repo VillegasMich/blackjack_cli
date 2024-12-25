@@ -16,6 +16,14 @@ impl Hand {
         let card = deck.cards.remove(rand_card);
         self.hand.push(card);
     }
+    pub fn hit(&mut self, deck: &mut Deck) {
+        let rand_card = rand::thread_rng().gen_range(0..deck.cards.len() - 1);
+        let card = deck.cards.remove(rand_card);
+        let copy_card = card.clone();
+        self.hand.push(card);
+        println!("The {} was: ", "draw".bold().yellow());
+        copy_card.print_exact_card();
+    }
     pub fn check_cards(&self) {
         println!("------------------------------");
         for i in 0..self.hand.len() {
@@ -60,14 +68,15 @@ impl Hand {
             true
         } else if sum > 21 {
             println!("------------------------------");
-            println!("You have more than 21, I'm sorry you lose.");
+            println!("You have more than 21.");
             println!("{}.", "The player lose".bold().red());
             println!("------------------------------");
             true
         } else {
             println!("------------------------------");
             println!(
-                "You have a total of {}. The game is running.",
+                "The {} has a total of {}. The game is running.",
+                "player".bold().blue(),
                 sum.to_string().bold().yellow()
             );
             println!("------------------------------");
@@ -109,7 +118,8 @@ impl Hand {
         } else {
             println!("------------------------------");
             println!(
-                "The dealer has a total of {}. The game is running.",
+                "The {} has a total of {}. The game is running.",
+                "dealer".bold().cyan(),
                 sum.to_string().bold().yellow()
             );
             println!("------------------------------");
